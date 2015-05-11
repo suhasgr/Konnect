@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+   "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+<constant name="struts.devMode" value="true" />
+<constant name="struts.multipart.saveDir" value="/tmp" /> 
+<constant name="struts.multipart.maxSize" value="2097152" />       
+   
+                  
+      <package name="common" extends="struts-default,json-default">
+      <action name="loginaction" 
+         class="com.konnectcore.login.LoginAction"
+         method="execute">
+         <result name="success" type="redirectAction">
+	            <param name="actionName">newsfeedaction</param>
+	     	 </result>
+         <result name="error">/index.jsp</result>
+      </action>
+    
+      
+      <action name="signupaction">
+      		<result>/WEB-INF/signup.jsp</result>
+      </action>
+      
+      <action name="signupform" class="com.konnectcore.login.SignUpForm"
+      method = "execute">
+      	<result name="success">index.jsp</result>
+      	<result name="retry">/WEB-INF/signup.jsp</result>
+      </action>
+      
+      <action name="chatopen" class="com.konnectcore.chat.Server" method="execute">
+			<result name="success">/WEB-INF/ChatSuccess.jsp</result>
+		</action>
+		
+		<action name="sendmessage" class="com.konnectcore.chat.Server"
+			method="SendMessage">
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="msgString">msgString</param>
+			</result>
+		</action>
+		
+		<action name="fetchnewmessages" class="com.konnectcore.chat.Server"
+			method="FetchMessages">
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="msgString">msgString</param>
+			</result>
+		</action>
+		
+		<action name="chataction" class="com.konnectcore.login.ChatSessionAction"
+			method="execute">
+			<result name="success">/WEB-INF/ChatGenerate.jsp</result>
+		</action>
+      
+      
+   <!--  </package>  --> 	
+   
+	  
+	<!--  <package name="homepage" extends="struts-default">
+	    
+	</package> -->
+	
+	
+	<!--  <package name="dashboard" extends="struts-default">  -->
+   		
+   		<action name="homepage" class="com.konnectcore.navigation.urlAction" method="execute">
+   			<result name="success">/WEB-INF/homepage.jsp</result>
+   			<result name="error">index.jsp</result>
+   		</action>
+   		<action name="friendaction" class="com.konnectcore.login.FriendAction" method="execute">
+   			<result name="success">/WEB-INF/Friends.jsp</result>
+   			<result name="error">index.jsp</result>
+   		</action>
+   		<action name="profileview" class="com.konnectcore.login.Profile" method="execute">
+   			<result name="own">/WEB-INF/OwnProfile.jsp</result>
+   			<result name="friend">/WEB-INF/FriendProfile.jsp</result>
+   			<result name="pendingfriend">/WEB-INF/FriendProfile.jsp</result>
+   			<result name="unknown">/WEB-INF/FriendProfile.jsp</result>
+   			<result name="error">/WEB-INF/index.jsp</result>
+   		</action>
+   		<action name="friendstatus" class="com.konnectcore.login.FriendStatus">
+   			<result name="success">/WEB-INF/Friends.jsp</result>
+   			<result name="error">index.jsp</result>
+   		</action>
+   		   		<action name="postaction" class="com.konnectcore.login.PostAction" method="execute">
+         <result name="success" type="redirectAction">
+             <param name="actionName">newsfeedaction</param>
+         </result>
+         <result name="error" type="redirectAction">
+             <param name="actionName">newsfeedaction</param>
+         </result>
+      </action>
+      <action name="newsfeedaction" class="com.konnectcore.login.NewsFeedActionAJAX" method="execute">
+         <result name="success">/WEB-INF/homepage.jsp</result>
+         <result name="error">/WEB-INF/newsFeedError.jsp</result>
+      </action>
+      
+      <action name="addLikesToPostAJAX" class="com.konnectcore.login.NewsFeedActionAJAX" method="addLikesToPost">
+         <result type="stream">
+         <param name="contentType">text/html</param>
+    	<param name="inputName">stream</param>
+    	</result>
+      </action>
+      <action name="blockThisPostAJAX" class="com.konnectcore.login.NewsFeedActionAJAX" method="blockThisPost">
+         <result type="stream">
+         <param name="contentType">text/html</param>
+    	<param name="inputName">stream</param>
+    	</result>
+      </action>
+   		<action name="moreaction" class="com.konnectcore.login.NewsFeedActionAJAX" method="execute">
+         <result name="success">/WEB-INF/homepage.jsp</result>
+         <result name="error">/WEB-INF/newsFeedError.jsp</result>
+      </action>
+      
+   	  <action name="retrieveFriendsAJAX" class="com.konnectcore.login.NewsFeedActionAJAX" method="retrieveFriendList">
+         <result type="stream">
+         <param name="contentType">text/html</param>
+    	<param name="inputName">stream</param>
+    	</result>
+      </action>
+   	  
+   			
+       <action name="addCommentToPostAJAX" class="com.konnectcore.login.NewsFeedActionAJAX" method="addCommentToPost">
+         <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+             <param name="enableSMD">true</param> 
+         </interceptor-ref>
+         <result name="success" type="redirectAction">
+             <param name="actionName">newsfeedaction</param>
+         </result>
+         <!-- <result type="stream">
+         <param name="contentType">text/html</param>
+    	<param name="inputName">stream</param>
+    	</result> -->
+      </action>
+       <action name="uploadImage" class="com.konnectcore.login.FileUploadAction" method="execute">
+            <param name="imagePath">imagePath</param>
+            <result name="fileInBytes" type="redirectAction">
+	            <param name="actionName">newsfeedaction</param>
+	        	<!-- <param name="fileInBytes">${fileInBytes}</param> -->
+	     	 </result>
+            <result name="success">/WEB-INF/homepage.jsp</result>
+            <result name="error">/WEB-INF/ImageUploadError.jsp</result>
+ 
+            <interceptor-ref name="defaultStack">
+                <param name="fileUpload.maximumSize">10485760</param>
+                <param name="fileUpload.allowedTypes">text/plain,image/jpeg</param>
+            </interceptor-ref>
+           
+             
+        </action>  <action name="logout" class="com.konnectcore.login.LogOut" method="execute">
+      	<result name="success">/WEB-INF/checkLogin.jsp</result>
+      </action>
+      <action name="editprofile" class="com.konnectcore.navigation.urlAction" method="execute">
+      	<result name="success">/WEB-INF/EditProfile.jsp</result>
+      </action>
+      <action name="profilestatus" class="com.konnectcore.login.ProfileStatus" method="execute">
+      	<result name="save">/WEB-INF/OwnProfile.jsp</result>
+      	<result name="cancel">/WEB-INF/EditProfile.jsp</result>
+      	<result name="delete">index.jsp</result>
+      	<result name="ERROR">index.jsp</result>
+      </action>
+      
+      <action name="notification" class="com.konnectcore.login.notification" method="execute">
+      	<result name="success">/WEB-INF/Notifications.jsp</result>
+      	<result name="error">/WEB-INF/index.jsp</result>
+      </action>
+     <action name="clearNotification" class="com.konnectcore.login.notification" method="execute">
+      	<result name="success">/WEB-INF/Notifications.jsp</result>
+      </action>	
+      
+        <action name="forums" class="com.konnectcore.navigation.urlAction" method="execute">
+   			<result name="success">/WEB-INF/forums.jsp</result>
+   		</action>
+   		
+
+   		<action name="myforums" class="com.konnectcore.login.ForumSelect" method="executeMyList">
+			<result name="success">/WEB-INF/forumsmine.jsp</result>
+	  	</action>
+   	   	
+   	   	<action name="createforum" class="com.konnectcore.navigation.urlAction" method="execute">
+   			<result name="success">/WEB-INF/forumcreate.jsp</result>
+   		</action>
+   		<action name="selectforum" class="com.konnectcore.login.SelectForumAction" method="execute">
+   			<result name="success">/WEB-INF/forumRetrieve.jsp</result>
+   			<result name="MEMBER">/WEB-INF/forumRetrieve.jsp</result>
+   			<result name="NOTMEMBER">/WEB-INF/forumRetrieveNotMember.jsp</result>
+   			<result name="OWNER">/WEB-INF/forumRetrieveOwner.jsp</result>
+   			<result name="PENDING">/WEB-INF/forumRetrievePending.jsp</result>
+   		</action>
+
+   		<action name="createforumpage" class="com.konnectcore.login.ForumAction" method="execute">
+   			<result name="success">/WEB-INF/forumRetrieve.jsp</result>
+   			<result name="error">/WEB-INF/forumcreate.jsp</result>
+   			<result name="FORUMLIMIT">/WEB-INF/forumLimit.jsp</result>
+   			<result name="OWNER">/WEB-INF/forumRetrieveOwner.jsp</result>
+   		</action>
+
+   		<action name="retrieveforum" class="com.konnectcore.login.CommentForumAction" method="execute">
+   			<result name="success">/WEB-INF/forumRetrieve.jsp</result>
+   		</action>
+   		<action name="retrieveforumOwner" class="com.konnectcore.login.CommentForumAction" method="execute">
+   			<result name="success">/WEB-INF/forumRetrieve.jsp</result>
+   			<result name="OWNER">/WEB-INF/forumRetrieveOwner.jsp</result>
+   		</action>
+   		   		
+   		<action name="sendCategory" class="com.konnectcore.login.ForumSelect" method="execute">
+			<result name="success">/WEB-INF/forumdiscussion.jsp</result>
+	  	</action>
+	  	
+	  	<action name="joinforum" class="com.konnectcore.login.SelectForumAction" method="executeJoinForum">
+   			<result name="success">/WEB-INF/forumRetrievePending.jsp</result>
+   		</action>
+      	
+ 	  	<action name="acceptforumrequest" class="com.konnectcore.login.SelectForumAction" method="executeAcceptForumRequest">
+   			<result name="success">/WEB-INF/forumRetrieveOwner.jsp</result>
+   		</action>
+   		<action name="deleteforum" class="com.konnectcore.login.SelectForumAction" method="executeDeleteForum">
+   			<result name="success">/WEB-INF/forums.jsp</result>
+   		</action>
+	
+	<action name="blockThisCommentAJAX" class="com.konnectcore.login.CommentForumAction"
+		method="blockThisComment">
+		<result name="success">/WEB-INF/forumRetrieve.jsp</result>
+   			<result name="OWNER">/WEB-INF/forumRetrieveOwner.jsp</result>
+	</action>
+ </package>
+
+
+</struts>

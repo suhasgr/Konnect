@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.konnectcore.bean.Messages" table="Messages">
+    
+    
+          <id name="messagesId" type="java.lang.Integer">
+            <column name="MessageID" />
+            
+            
+            <generator class="identity" />
+        </id> 
+        <!-- <id column="MessageID" name="messagesID" >
+		<generator class="increment"/>
+		</id> -->
+		
+		
+        <property name="chatID" type="java.lang.String">
+            <column name="ChatID" />
+		</property>
+		<property name="messages" type="java.lang.String">
+            <column name="Messages" />
+		</property>
+	  	<property name="msgTime" type="java.sql.Timestamp">
+            <column name="MsgTime" />
+		</property>
+		
+		<property name="sender" type="java.lang.String">
+            <column name="Sender" />
+		</property>
+		
+		
+		
+    </class>
+</hibernate-mapping>

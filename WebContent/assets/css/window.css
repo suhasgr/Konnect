@@ -1,0 +1,5 @@
+@CHARSET "ISO-8859-1";
+
+.boxed {
+   border: 1px solid blue ; 
+}

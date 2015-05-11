@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.konnectcore.bean.blockedposts" table="blockedposts">
+        <id name="indx" type="int">
+            <column name="indx" />
+            <generator class="increment" />
+        </id>
+        <property name="blockedpost" type="int">
+            <column name="blockedpost" />
+		</property>
+		<property name="userID" type="java.lang.String">
+            <column name="userid" />
+		</property>
+    </class>
+</hibernate-mapping>

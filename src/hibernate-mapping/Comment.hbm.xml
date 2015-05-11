@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.konnectcore.bean.CommentForum" table="commentsforum">
+        <id name="commentID" type="java.lang.String">
+            <column name="commentid" />
+            <generator class="uuid" />
+        </id>
+        <property name="forumID" type="java.lang.String">
+            <column name="forumid" />
+		</property>
+
+		<property name="description" type="java.lang.String">
+            <column name="description" />
+		</property>
+		
+		<property name="userID" type="java.lang.String">
+            <column name="userid" />
+		</property>
+
+		<property name="time" type="java.sql.Timestamp">
+            <column name="time" />
+		</property>
+		
+		<property name="blockCount" type="int">
+            <column name="blockcount" />
+		</property>
+		
+    </class>
+</hibernate-mapping>

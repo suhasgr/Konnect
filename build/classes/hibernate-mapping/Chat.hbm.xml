@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.konnectcore.bean.Chat" table="ChatSession">
+        <id name="uuid" type="java.lang.String">
+            <column name="Uuid" />
+            <generator class="assigned" />
+        </id>
+        <property name="senderID" type="java.lang.String">
+            <column name="SenderID" />
+		</property>
+		<property name="receiverID" type="java.lang.String">
+            <column name="ReceiverID" />
+		</property>
+		<property name="active" type="java.lang.Integer">
+            <column name="Active" />
+		</property>
+		
+    </class>
+</hibernate-mapping>

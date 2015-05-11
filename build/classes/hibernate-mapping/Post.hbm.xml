@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.konnectcore.bean.Post" table="post">
+        <id name="postID" type="int">
+            <column name="postid" />
+            <generator class="increment" />
+        </id>
+        <property name="userID" type="java.lang.String">
+            <column name="userid" />
+		</property>
+		<property name="postText" type="java.lang.String">
+            <column name="posttext" />
+		</property>
+		
+		<property name="postTime" type="java.sql.Timestamp">
+            <column name="posttime" />
+		</property>
+		<property name="likes" type="int">
+            <column name="likes" />
+		</property>
+		
+		<list name="comments" cascade="all">  
+          <key column="postid"></key>  
+          <index column="type"></index>  
+          <one-to-many class="com.konnectcore.bean.Comment"/>  
+         </list> 
+          
+	<!-- 	<list name="blocked" table="blocked10">  
+	     <key column="postid"></key>  
+	     <index column="type"></index>  
+	     <element column="blockedusers" type="string"></element>  
+	   </list> 
+	   
+		<list name="tags" table="tagged10">  
+	     <key column="postid"></key>  
+	     <index column="type"></index>  
+	     <element column="taggedusers" type="string"></element>  
+	   </list> 
+	   
+		<list name="privacy" table="privacied10">  
+	     <key column="postid"></key>  
+	     <index column="type"></index>  
+	     <element column="privacyusers" type="string"></element>  
+	   </list>
+	   
+		<list name="likes" table="liked10">  
+	     <key column="postid"></key>  
+	     <index column="type"></index>  
+	     <element column="likedusers" type="string"></element>  
+	   </list>
+	  --> 
+	   <property name="image" type="binary">
+            <column name="image" />
+	   </property>
+	<!-- 	<property name="likedusers" type="com.konnectcore.hibernate.StringArrayUserType">
+			<column name="likedusers"></column>
+		 </property> -->
+    </class>  
+            
+          <class name="com.konnectcore.bean.Comment" table="comments">  
+          <id name="commentid">  
+          <generator class="increment"></generator>  
+          </id>  
+          <property name="commentText"></property>  
+          <property name="userID"></property>  
+          <property name="commentTime"></property>
+          </class>  
+</hibernate-mapping>

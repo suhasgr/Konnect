@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.konnectcore.bean.ForumRequests" table="forumrequests">
+        <id name="requestID" type="java.lang.String">
+            <column name="requestid" />
+            <generator class="uuid" />
+        </id>
+        <property name="forumID" type="java.lang.String">
+            <column name="forumid" />
+		</property>
+
+		<property name="ownerUserID" type="java.lang.String">
+            <column name="owneruserid" />
+		</property>
+				<property name="requestUserID" type="java.lang.String">
+            <column name="requestuserid" />
+		</property>
+
+		<property name="approveFlag" type="boolean">
+            <column name="approveflag" />
+		</property>
+		
+		<property name="pendingFlag" type="boolean">
+            <column name="pendingflag" />
+		</property>
+
+		<property name="memberFlag" type="boolean">
+            <column name="memberflag" />
+		</property>
+		
+		<property name="ownerFlag" type="boolean">
+            <column name="ownerflag" />
+		</property>
+		
+    </class>
+</hibernate-mapping>

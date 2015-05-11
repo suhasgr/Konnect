@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.konnectcore.bean.userInformation" table="userinformation">
+        <id name="userID" type="java.lang.String">
+            <column name="userid" />
+            <generator class="assigned" />
+        </id>
+        <property name="pass" type="java.lang.String">
+            <column name="pass" />
+         </property>
+         <property name="email" type="java.lang.String">
+            <column name="email" />
+         </property>
+
+		<property name="friends" type="com.konnectcore.hibernate.StringArrayUserType">
+			<column name="friends"></column>
+		</property>
+		<property name="pending" type="com.konnectcore.hibernate.StringArrayUserType">
+			<column name="pending"></column>
+		</property>
+		<property name="sentRequests" type="com.konnectcore.hibernate.StringArrayUserType">
+			<column name="sentRequests"></column>
+		</property>
+		<property name="blockedUsers" type="com.konnectcore.hibernate.StringArrayUserType">
+			<column name="blockeduser"></column>
+		</property>
+		<property name="occupation" type="java.lang.String">
+			<column name="occupation"></column>
+		</property>
+		<property name="name" type="java.lang.String">
+			<column name="name"></column>
+		</property>
+		<property name="lastname" type="java.lang.String">
+			<column name="lastname"></column>
+		</property>
+		<property name="hobbies" type="java.lang.String">
+			<column name="hobbies"></column>
+		</property>
+		<property name="location" type="java.lang.String">
+			<column name="location"></column>
+		</property>
+		<property name="gender" type="java.lang.String">
+			<column name="gender"></column>
+		</property>
+		<property name="image" type="binary">
+			<column name="image"></column>
+		</property>
+		<property name="notification" type="com.konnectcore.hibernate.StringArrayUserType">
+			<column name="notification"></column>
+		</property>
+				
+    </class>
+</hibernate-mapping>
